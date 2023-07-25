@@ -13,7 +13,7 @@ catch {
 }
 
 # Step 2: Get the location of the packages file
-$userInput = Read-Host -Prompt "Enter the URL or local path to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt)"
+$userInput = Read-Host -Prompt "Enter the URL or local path to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt):"
 if (!$userInput) {
     # No input, use the default URL
     $Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt"

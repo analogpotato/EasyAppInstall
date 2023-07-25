@@ -10,7 +10,7 @@ else
 fi
 
 # Step 2: Get the location of the packages file
-echo "Enter the URL or local path to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/brew/packages.txt)"
+echo "Enter the URL or local path to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/brew/packages.txt):"
 read user_input
 if [ -z "$user_input" ]
 then
