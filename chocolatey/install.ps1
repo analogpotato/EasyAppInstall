@@ -1,7 +1,5 @@
 # This script requires PowerShell version 3 or above
 
-$local_temp = "C:\Users\spudl\AppData\Local\Temp\packages.txt"
-
 # Step 1: Check if Chocolatey is installed
 try {
     choco -v | Out-Null
@@ -16,7 +14,7 @@ catch {
 
 # Step 2: Download a file from GitHub
 $Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt"
-$output = $local_temp
+$output = "$env:temp\packages.txt"
 Start-BitsTransfer -Source $Url -Destination $output
 
 # Step 3: Read the contents of the file and install the packages
