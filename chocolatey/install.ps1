@@ -21,5 +21,12 @@ Start-BitsTransfer -Source $Url -Destination $output
 
 # Step 3: Read the contents of the file and install the packages
 Get-Content $output | ForEach-Object {
-    choco install $_ -y
+    if (choco list --local-only | Select-String -Pattern "^$_ ") {
+        Write-Host "$_ is already installed with Chocolatey"
+    } elseif ((Get-WmiObject -Query "SELECT * FROM Win32_Product WHERE (Name LIKE '%$_%')" -ErrorAction SilentlyContinue)) {
+        Write-Host "$_ is already installed on the system"
+    } else {
+        Write-Host "Installing $_..."
+        choco install $_ -y
+    }
 }
