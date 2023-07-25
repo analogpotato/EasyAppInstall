@@ -10,7 +10,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/in
 # Step 2: Download a file from GitHub
 $Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/install.ps1" # replace this with your file URL
 $output = $local_temp
-Invoke-WebRequest -Uri $Url -OutFile $output
+Start-BitsTransfer -Source $Url -Destination $output
 
 # # Step 3: Read the contents of the file and install the packages
 # Get-Content $output | ForEach-Object {
