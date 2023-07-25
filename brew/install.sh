@@ -9,30 +9,13 @@ else
     echo "Homebrew is already installed"
 fi
 
-# Step 2: Download a file from GitHub
-default_url="https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/brew/packages.txt"
-echo "Enter the URL to the packages file (or press Enter to use the default URL):"
-read user_url
-url=${user_url:-$default_url}
+# Step 2: Define the list of packages
+packages=("visual-studio-code" "vlc" "spotify")
 
-output="/tmp/packages.txt"
-curl -L $url -o $output
-
-# Remove carriage return characters
-tr -d '\r' < "$output" > "/tmp/tmp_packages.txt"
-mv "/tmp/tmp_packages.txt" "$output"
-
-# Step 3: Read the contents of the file and install the packages
-echo "Contents of $output:"
-cat "$output"
-
-if [[ -s "$output" ]]; then
-    echo "Installing packages..."
-    while IFS= read -r package
-    do
-        echo "Package to be installed: '$package'"
-        brew install "$package" || echo "Failed to install $package"
-    done < "$output"
-else
-    echo "No packages to install. The file is empty."
-fi
+# Step 3: Install the packages
+echo "Installing packages..."
+for package in "${packages[@]}"
+do
+    echo "Installing $package..."
+    brew install "$package" || echo "Failed to install $package"
+done
