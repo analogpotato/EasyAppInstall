@@ -19,6 +19,10 @@ output="/tmp/packages.txt"
 curl -L $url -o $output
 
 # Step 3: Read the contents of the file and install the packages
+echo "Contents of $output:"
+cat "$output"
+
+echo "Installing packages..."
 while IFS= read -r package
 do
   echo "Installing $package..."
