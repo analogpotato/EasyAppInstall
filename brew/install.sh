@@ -29,7 +29,7 @@ if [[ -s "$output" ]]; then
     echo "Installing packages..."
     while IFS= read -r package
     do
-        echo "Installing $package..."
+        echo "Package to be installed: '$package'"
         brew install "$package" || echo "Failed to install $package"
     done < "$output"
 else
