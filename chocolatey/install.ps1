@@ -1,6 +1,6 @@
 # This script requires PowerShell version 3 or above
 
-$local_temp = "C:\Users\spudl\AppData\Local\Temp\package.txt"
+$local_temp = "C:\Users\spudl\AppData\Local\Temp\packages.txt"
 
 # Step 1: Install Chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force;
@@ -8,7 +8,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Step 2: Download a file from GitHub
-$Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/install.ps1" # replace this with your file URL
+$Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt" # replace this with your file URL
 $output = $local_temp
 Start-BitsTransfer -Source $Url -Destination $output
 
