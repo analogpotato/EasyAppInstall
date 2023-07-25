@@ -22,9 +22,13 @@ curl -L $url -o $output
 echo "Contents of $output:"
 cat "$output"
 
-echo "Installing packages..."
-while IFS= read -r package
-do
-  echo "Installing $package..."
-  brew install "$package" || echo "Failed to install $package"
-done < "$output"
+if [[ -s "$output" ]]; then
+    echo "Installing packages..."
+    while IFS= read -r package
+    do
+        echo "Installing $package..."
+        brew install "$package" || echo "Failed to install $package"
+    done < "$output"
+else
+    echo "No packages to install. The file is empty."
+fi
