@@ -16,7 +16,7 @@ packages=("visual-studio-code" "vlc" "spotify")
 echo "🛠️ Installing packages..."
 for package in "${packages[@]}"
 do
-    if brew list --cask --formula -1 | grep -q "^${package}\$"; then
+    if brew list --versions $package > /dev/null; then
         echo "$package is already installed ✅"
     else
         echo "🛠️ Installing $package..."
