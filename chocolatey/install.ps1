@@ -12,12 +12,23 @@ catch {
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
-# Step 2: Download a file from GitHub
-$defaultUrl = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt"
-$userUrl = Read-Host -Prompt "Enter the URL to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt)"
-$Url = if ($userUrl) { $userUrl -replace "github\.com", "raw.githubusercontent.com" -replace "/blob/", "/" } else { $defaultUrl }
-$output = "$env:temp\packages.txt"
-Start-BitsTransfer -Source $Url -Destination $output
+# Step 2: Get the location of the packages file
+$userInput = Read-Host -Prompt "Enter the URL or local path to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt)"
+if (!$userInput) {
+    # No input, use the default URL
+    $Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt"
+    $output = "$env:temp\packages.txt"
+    $Url = $Url -replace "github\.com", "raw.githubusercontent.com" -replace "/blob/", "/"
+    Start-BitsTransfer -Source $Url -Destination $output
+} elseif ($userInput -match '^https?://') {
+    # Input is a URL, download the file
+    $Url = $userInput -replace "github\.com", "raw.githubusercontent.com" -replace "/blob/", "/"
+    $output = "$env:temp\packages.txt"
+    Start-BitsTransfer -Source $Url -Destination $output
+} else {
+    # Input is a local path
+    $output = $userInput
+}
 
 # Step 3: Read the contents of the file and install the packages
 Get-Content $output | ForEach-Object {
