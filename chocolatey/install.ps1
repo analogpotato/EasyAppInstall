@@ -8,7 +8,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/in
 # Step 2: Download a file from GitHub
 $Url = "https://raw.githubusercontent.com/analogpotato/chocolatey/packages.txt"  # replace this with your file URL
 $output = "$env:temp\package.txt"
-# Invoke-WebRequest -Uri $Url -OutFile $output
+Invoke-WebRequest -Uri $Url -OutFile $output
 
 # # Step 3: Read the contents of the file and install the packages
 # Get-Content $output | ForEach-Object {
