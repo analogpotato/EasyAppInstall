@@ -23,3 +23,4 @@ do
         brew install "$package" || echo "❌ Failed to install $package"
     fi
 done
+
