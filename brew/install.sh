@@ -10,7 +10,7 @@ else
 fi
 
 # Step 2: Get the location of the packages file
-echo "Enter the URL or local path to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/brew/packages.txt):"
+echo "Enter the URL or local path to the packages file (or press Enter to use the default URL):"
 read user_input
 if [ -z "$user_input" ]
 then
@@ -21,7 +21,7 @@ then
 elif [[ $user_input == http* ]]
 then
     # Input is a URL, download the file
-    url=$user_input
+    url=$(echo $user_input | sed "s/github\.com/raw.githubusercontent.com/" | sed "s/blob\///")
     output="/tmp/packages.txt"
     curl -L $url -o $output
 else
@@ -47,4 +47,3 @@ if [[ -s "$output" ]]; then
 else
     echo "No packages to install. The file is empty or does not exist."
 fi
- 
