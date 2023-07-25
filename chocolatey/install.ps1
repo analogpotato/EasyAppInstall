@@ -12,7 +12,7 @@ $Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/choco
 $output = $local_temp
 Start-BitsTransfer -Source $Url -Destination $output
 
-# # Step 3: Read the contents of the file and install the packages
-# Get-Content $output | ForEach-Object {
-#     choco install $_ -y  # the -y flag automatically confirms all prompts
-# }
+# Step 3: Read the contents of the file and install the packages
+Get-Content $output | ForEach-Object {
+    choco install $_ -y  # the -y flag automatically confirms all prompts
+}
