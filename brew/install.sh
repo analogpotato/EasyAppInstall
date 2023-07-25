@@ -18,8 +18,9 @@ url=${user_url:-$default_url}
 output="/tmp/packages.txt"
 curl -L $url -o $output
 
-# Convert Windows line endings to Unix line endings
-sed -i '' 's/\r$//' "$output"
+# Remove carriage return characters
+tr -d '\r' < "$output" > "/tmp/tmp_packages.txt"
+mv "/tmp/tmp_packages.txt" "$output"
 
 # Step 3: Read the contents of the file and install the packages
 echo "Contents of $output:"
