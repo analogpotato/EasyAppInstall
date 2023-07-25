@@ -21,5 +21,6 @@ curl -L $url -o $output
 # Step 3: Read the contents of the file and install the packages
 while IFS= read -r package
 do
-  brew install "$package"
+  echo "Installing $package..."
+  brew install "$package" || echo "Failed to install $package"
 done < "$output"
