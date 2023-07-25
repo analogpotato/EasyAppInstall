@@ -10,7 +10,7 @@ else
 fi
 
 # Step 2: Get the location of the packages file
-echo "Enter the URL or local path to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/brew/packages.txt):"
+echo "Enter the URL or local path to the packages file (or press Enter to use the default URL which is located at: https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/brew/packages.txt)"
 read user_input
 if [ -z "$user_input" ]
 then
@@ -34,12 +34,16 @@ sed -i '' 's/\r$//' "$output"
 
 # Step 3: Read the contents of the file and install the packages
 echo "🛠️ Installing packages..."
-while IFS= read -r package
-do
-    if brew list | grep -q "^${package}\$"; then
-        echo "$package is already installed ✅"
-    else
-        echo "🛠️ Installing $package..."
-        brew install "$package" || echo "❌ Failed to install $package"
-    fi
-done < "$output"
+if [[ -s "$output" ]]; then
+    while IFS= read -r package
+    do
+        if brew list | grep -q "^${package}\$"; then
+            echo "$package is already installed ✅"
+        else
+            echo "🛠️ Installing $package..."
+            brew install "$package" || echo "❌ Failed to install $package"
+        fi
+    done < "$output"
+else
+    echo "No packages to install. The file is empty or does not exist."
+fi
