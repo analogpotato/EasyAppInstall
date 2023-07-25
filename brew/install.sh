@@ -41,9 +41,10 @@ if [[ -s "$output" ]]; then
             echo "$package is already installed ✅"
         else
             echo "🛠️ Installing $package..."
-            brew install "$package" || echo "❌ Failed to install $package"
+            brew install "$(echo "$package" | tr -d '\n')" || echo "❌ Failed to install $package"
         fi
     done < "$output"
 else
     echo "No packages to install. The file is empty or does not exist."
 fi
+
