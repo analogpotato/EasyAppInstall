@@ -18,6 +18,10 @@ packages=("visual-studio-code" "vlc" "spotify")
 echo "🛠️ Installing packages..."
 for package in "${packages[@]}"
 do
-    echo "🛠️ Installing $package..."
-    brew install "$package" || echo "❌ Failed to install $package"
+    if brew list --formula | grep -q "^${package}\$"; then
+        echo "$package is already installed ✅"
+    else
+        echo "🛠️ Installing $package..."
+        brew install "$package" || echo "❌ Failed to install $package"
+    fi
 done
