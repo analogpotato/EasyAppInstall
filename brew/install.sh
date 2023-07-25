@@ -47,3 +47,4 @@ if [[ -s "$output" ]]; then
 else
     echo "No packages to install. The file is empty or does not exist."
 fi
+ 
