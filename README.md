@@ -1,5 +1,7 @@
 # EasyAppInstall
-This repo will use either chocolatey or brew to install a series of favorite apps from a package manager
+
+
+I created this repo in order to make it easier to This repo will use either chocolatey or brew to install a series of favorite apps from a package manager
 
 
 This command should run the powershell:
