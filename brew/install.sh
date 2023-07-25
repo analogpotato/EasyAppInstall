@@ -1,9 +1,11 @@
 #!/bin/bash
 
+#!/bin/bash
+
 # Step 1: Check if Homebrew is installed
 if ! command -v brew &> /dev/null
 then
-    echo "❌ Homebrew not found. 🛠️ Installing now..."
+    echo "❌ Homebrew not found. Installing now..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
     echo "Homebrew is already installed ✅"
@@ -16,10 +18,6 @@ packages=("visual-studio-code" "vlc" "spotify")
 echo "🛠️ Installing packages..."
 for package in "${packages[@]}"
 do
-    if brew list --versions $package > /dev/null; then
-        echo "$package is already installed ✅"
-    else
-        echo "🛠️ Installing $package..."
-        brew install "$package" || echo "Failed to install $package"
-    fi
+    echo "🛠️ Installing $package..."
+    brew install "$package" || echo "❌ Failed to install $package"
 done
