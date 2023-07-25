@@ -15,7 +15,7 @@ catch {
 # Step 2: Download a file from GitHub
 $defaultUrl = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/packages.txt"
 $userUrl = Read-Host -Prompt "Enter the URL to the packages file (or press Enter to use the default URL)"
-$Url = if ($userUrl) { $userUrl } else { $defaultUrl }
+$Url = if ($userUrl) { $userUrl -replace "github\.com", "raw.githubusercontent.com" -replace "/blob/", "/" } else { $defaultUrl }
 $output = "$env:temp\packages.txt"
 Start-BitsTransfer -Source $Url -Destination $output
 
