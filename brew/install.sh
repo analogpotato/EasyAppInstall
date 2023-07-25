@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 # Step 1: Check if Homebrew is installed
 if ! command -v brew &> /dev/null
 then
@@ -18,11 +16,10 @@ packages=("visual-studio-code" "vlc" "spotify")
 echo "🛠️ Installing packages..."
 for package in "${packages[@]}"
 do
-    if brew list --formula | grep -q "^${package}\$"; then
+    if brew list --formula --cask | grep -q "^${package}\$"; then
         echo "$package is already installed ✅"
     else
         echo "🛠️ Installing $package..."
         brew install "$package" || echo "❌ Failed to install $package"
     fi
 done
-
