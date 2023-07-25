@@ -2,7 +2,7 @@
 
 ## 😀 Purpose
 
-"EasyAppInstall" is a tool created to simplify and automate the process of installing your favorite applications on a new machine. Whether you're a developer, a system admin, or an individual user, this project is designed with you in mind. Utilizing the power of package managers - Homebrew for macOS and Chocolatey for Windows 10/11 - it automates not only the installation of a suite of applications but also ensures the package managers themselves are installed, offering a near one-click solution.
+"EasyAppInstall" is a tool created to simplify and automate the process of installing your favorite applications on a new machine. Whether you're a developer, a system admin, or an individual user, this project is designed with you in mind. Utilizing the power of package managers - [Homebrew](https://brew.sh/) for macOS and [Chocolatey](https://chocolatey.org/) for Windows 10/11 - it automates not only the installation of a suite of applications but also ensures the package managers themselves are installed, offering a near one-click solution.
 
 What sets EasyAppInstall apart is its flexibility and modularity. The list of applications to be installed is maintained in a simple text file, packages.txt, which can be easily customized according to each user's needs. Want to maintain your own list of packages in a remote location? The script can prompt for a custom URL to your packages.txt file. In essence, EasyAppInstall makes setting up your essential software a breeze, regardless of whether you're on a Mac or Windows machine.
 
@@ -35,7 +35,7 @@ What sets EasyAppInstall apart is its flexibility and modularity. The list of ap
 iwr -useb https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/install.ps1 | iex
 ```
 
-When prompted, enter the URL to your own packages.txt file if you have one, or press Enter to use the default.
+When prompted, enter the URL to your own packages.txt file hosted on Github if you have one, or press Enter to use the default located in the `/chocolatey/packages.txt` folder in this repo.
 
 ### For macOS:
 
@@ -46,6 +46,7 @@ When prompted, enter the URL to your own packages.txt file if you have one, or p
 ```
 curl -L https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/brew/install.sh -o ~/install.sh && chmod +x ~/install.sh && ~/install.sh
 ```
+- ❗**Attention!** If you want to update the package list provided, then you may have to fork this repo and update the `packages` list before running.
 
 That's it! The script will automatically install the listed packages using the appropriate package manager (Chocolatey for Windows, Homebrew for macOS). If the package manager is not already installed, the script will install it first. If you provided a custom packages.txt file, the script will install the packages listed in that file.
 
