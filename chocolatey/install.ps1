@@ -8,7 +8,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Step 2: Download a file from GitHub
-$Url = $Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/install.ps1" # replace this with your file URL
+$Url = "https://raw.githubusercontent.com/analogpotato/EasyAppInstall/main/chocolatey/install.ps1" # replace this with your file URL
 $output = $local_temp
 Invoke-WebRequest -Uri $Url -OutFile $output
 
